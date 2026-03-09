@@ -8,7 +8,7 @@ import {
     getEstadisticas
 } from "../../redux/action/adminAction";
 import { listReport, updateEstadoReporte } from "../../redux/action/reportAction";
-import "./reportes.css";
+import "./Reportes.css";
 
 const Reportes = () => {
 
