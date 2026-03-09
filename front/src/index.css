@@ -1,0 +1,22 @@
+/* ============================================
+   ENTRADA PRINCIPAL - IMPORTACIONES Y BASE
+   ============================================ */
+
+@import url('./styles/variables.css');
+@import url('./styles/globals.css');
+@import url('./componets/components-theme.css');
+
+body {
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-family-primary);
+  line-height: var(--line-height-normal);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

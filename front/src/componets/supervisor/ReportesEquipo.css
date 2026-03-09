@@ -1,0 +1,201 @@
+/* CONTENEDOR GENERAL */
+.reportes-container {
+  padding: 40px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.reportes-container h1 {
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* ============================= */
+/* FILTRO DE FECHA */
+/* ============================= */
+
+.filtro-fecha {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filtro-fecha button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #e2e8f0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filtro-fecha button:hover {
+  background: #cbd5e1;
+}
+
+.filtro-fecha button.active {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ============================= */
+/* TABLA */
+/* ============================= */
+
+.reportes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.reportes-table thead {
+  background: #1e293b;
+  color: white;
+}
+
+.reportes-table th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.reportes-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.reportes-table tbody tr:hover {
+  background: #f8fafc;
+  transition: 0.2s;
+}
+
+/* ============================= */
+/* ESTADOS */
+/* ============================= */
+
+.estado {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Aprobado */
+.estado.aprobado {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Rechazado */
+.estado.rechazado {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Pendiente */
+.estado.pendiente {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+/* Resuelto */
+.estado.resuelto {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* ============================= */
+/* BOTONES DE ACCIÓN */
+/* ============================= */
+
+.btn-acciones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-aprobar {
+  background: #22c55e;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.btn-aprobar:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+.btn-rechazar {
+  background: #ef4444;
+  border: none;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.btn-rechazar:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* MENSAJE SIN DATOS */
+/* ============================= */
+
+.no-data {
+  margin-top: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #64748b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 900px) {
+  .reportes-table {
+    font-size: 13px;
+  }
+
+  .reportes-table th,
+  .reportes-table td {
+    padding: 10px;
+  }
+
+  .filtro-fecha {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .reportes-container {
+    padding: 20px;
+  }
+
+  .reportes-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

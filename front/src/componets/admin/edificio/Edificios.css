@@ -1,0 +1,55 @@
+.edificio-container {
+  min-height: 100vh;
+  padding: 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(11,95,165,0.05),
+    rgba(45,190,96,0.05)
+  );
+  font-family: "Segoe UI", sans-serif;
+}
+
+.edificio-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.edificio-header h1 {
+  font-size: 32px;
+  margin: 10px 0;
+  background: linear-gradient(
+    90deg,
+    #0B5FA5,
+    #2DBE60
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.edificio-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.edificio-card {
+  width: 280px;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  color: #0A3D73;
+}
+
+.edificio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(11,95,165,0.2);
+}
+
+.edificio-card.secondary {
+  border: 2px solid #2DBE60;
+}

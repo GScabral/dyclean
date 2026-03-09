@@ -1,0 +1,84 @@
+.mis-tareas {
+  padding: 40px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.mis-tareas h2 {
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* Grid */
+.tareas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.tarea-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border-left: 5px solid #3b82f6;
+}
+
+.tarea-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Completada */
+.tarea-card.completada {
+  opacity: 0.7;
+  border-left: 5px solid #22c55e;
+  background: #f0fdf4;
+}
+
+/* Header */
+.tarea-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tarea-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.badge-prioritaria {
+  background: #facc15;
+  color: #78350f;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Descripción */
+.tarea-descripcion {
+  margin: 15px 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* Footer */
+.tarea-footer {
+  margin-top: 10px;
+}
+
+.checkbox-completada {
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-completada input {
+  cursor: pointer;
+}

@@ -1,0 +1,78 @@
+.detalle-persona {
+    padding: 40px;
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+.detalle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.detalle-header h1 {
+    font-size: 28px;
+    color: #1e293b;
+}
+
+.rol-badge {
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.rol-badge.admin {
+    background: #ef4444;
+}
+
+.rol-badge.supervisor {
+    background: #f59e0b;
+}
+
+.rol-badge.empleado {
+    background: #22c55e;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.estado.activo {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.estado.inactivo {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.edificios-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.edificio-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}

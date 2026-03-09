@@ -1,0 +1,49 @@
+.personal-container {
+    padding: 40px;
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+.personal-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.personal-header h1 {
+    margin: 10px 0 5px;
+    font-size: 28px;
+    color: #1e293b;
+}
+
+.personal-header p {
+    color: #64748b;
+}
+
+.personal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.personal-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #1e293b;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.personal-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.personal-card.secondary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+}

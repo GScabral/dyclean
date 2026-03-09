@@ -1,0 +1,81 @@
+.mi-horario {
+  padding: 40px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.mi-horario h2 {
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* Tabla */
+
+.horario-container {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.horario-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.horario-table thead {
+  background: #1e293b;
+  color: white;
+}
+
+.horario-table th,
+.horario-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.horario-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Sin horario */
+
+.sin-horario {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #64748b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+/* Días */
+
+.dias-trabajo h3 {
+  margin-bottom: 15px;
+  color: #1e293b;
+}
+
+.dias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.dia-item {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  color: #334155;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.dia-item:hover {
+  transform: translateY(-3px);
+}

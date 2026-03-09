@@ -1,0 +1,115 @@
+.tareas-list {
+  padding: 40px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.tareas-list h2 {
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+.tareas-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+.tareas-table th,
+.tareas-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tareas-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tareas-table tr:hover {
+  background: #f1f5f9;
+}
+
+/* Tarea prioritaria resaltada */
+.prioritaria {
+  background: #fff7ed;
+}
+
+/* Inputs edición */
+.tareas-table input,
+.tareas-table textarea {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+}
+
+.tareas-table input:focus,
+.tareas-table textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+/* Botón estrella */
+.btn-prioritaria {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-prioritaria.active {
+  color: #f59e0b;
+}
+
+.btn-prioritaria:hover {
+  transform: scale(1.2);
+}
+
+/* Botones acciones */
+.btn-editar {
+  background: #0ea5e9;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-editar:hover {
+  background: #0284c7;
+}
+
+.btn-guardar {
+  background: #16a34a;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  margin-right: 5px;
+}
+
+.btn-guardar:hover {
+  background: #15803d;
+}
+
+.btn-cancelar {
+  background: #dc2626;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-cancelar:hover {
+  background: #b91c1c;
+}

@@ -1,0 +1,83 @@
+.personal-container {
+    padding: 40px;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.personal-container h2 {
+    margin-bottom: 25px;
+    color: #1e293b;
+}
+
+.personal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.personal-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.personal-card:hover {
+    transform: translateY(-5px);
+}
+
+.personal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rol {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.rol.admin {
+    background: #f87171;
+    color: white;
+}
+
+.rol.supervisor {
+    background: #fbbf24;
+    color: white;
+}
+
+.rol.empleado {
+    background: #34d399;
+    color: white;
+}
+
+.activo {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.inactivo {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.edificios {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.edificio {
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+.sin-edificio {
+    color: #64748b;
+    font-style: italic;
+}

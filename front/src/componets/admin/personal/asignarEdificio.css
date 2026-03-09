@@ -1,0 +1,3 @@
+@import '../../../styles/components-base.css';
+
+.asignar-edificio{display:flex;flex-direction:column;gap:12px}

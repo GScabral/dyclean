@@ -1,0 +1,1223 @@
+{
+  "fecha_analisis": "2026-01-22",
+  "resumen_ejecutivo": {
+    "total_controladores": 39,
+    "controladores_con_errores": 8,
+    "rutas_definidas": 9,
+    "acciones_redux": 3,
+    "acciones_redux_necesarias": 8,
+    "prioridad_general": "ALTA"
+  },
+  "endpoints_disponibles": [
+    {
+      "modulo": "AUTH",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/auth/login",
+          "middleware": "ninguno",
+          "controlador": "login",
+          "parametros": {
+            "body": ["email"]
+          },
+          "respuesta_exitosa": {
+            "accessToken": "string",
+            "refreshToken": "string",
+            "rol": "string"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/auth/logout",
+          "middleware": "ninguno",
+          "controlador": "logout",
+          "parametros": {},
+          "respuesta_exitosa": {
+            "message": "Sesión cerrada correctamente"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/auth/refresh-token",
+          "middleware": "ninguno",
+          "controlador": "refreshToken",
+          "parametros": {
+            "body": ["refreshToken"]
+          },
+          "respuesta_exitosa": {
+            "accessToken": "string"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "MIDDLEWARE",
+          "endpoint": "validarSesion",
+          "middleware": "validarSesion",
+          "controlador": "validarSesion",
+          "parametros": {
+            "headers": ["Authorization"]
+          },
+          "respuesta_exitosa": "next()",
+          "estado": "✓ FUNCIONAL"
+        }
+      ]
+    },
+    {
+      "modulo": "ADMIN",
+      "rutas": [
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/resumen",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "getResumenGeneral",
+          "parametros": {},
+          "respuesta_exitosa": {
+            "total_edificios": "number",
+            "total_personal": "number",
+            "jornadas_hoy": "number",
+            "total_incidencias": "number"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/horas",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "getHorasTrabajadas",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "edificio_id": "number",
+              "edificio": "string",
+              "horas_reales": "number",
+              "duracion_estimada_minutos": "number"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/ausencias",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "getAusencias",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "nombre": "string",
+              "apellido": "string",
+              "edificio": "string",
+              "dia_semana": "string"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/incidencias",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "getIncidencias",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "fecha": "date",
+              "empleado": "string",
+              "edificio": "string",
+              "url_foto": "string",
+              "observaciones": "string"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/horasExel",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "exportarHorasExcel",
+          "parametros": {},
+          "respuesta_exitosa": "archivo Excel",
+          "estado": "❌ NO IMPLEMENTADO"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/admin/estadisticas",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "getEstadisticas",
+          "parametros": {},
+          "respuesta_exitosa": "estadísticas",
+          "estado": "❌ NO IMPLEMENTADO"
+        }
+      ]
+    },
+    {
+      "modulo": "EDIFICIOS",
+      "rutas": [
+        {
+          "metodo": "GET",
+          "endpoint": "/edificio/listEdificio",
+          "middleware": "ninguno",
+          "controlador": "listEdificio",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "nombre": "string",
+              "direccion": "string",
+              "activo": "boolean"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/edificio/detallesEdificio/:id",
+          "middleware": "ninguno",
+          "controlador": "detallesEdificio",
+          "parametros": {
+            "params": ["id"]
+          },
+          "respuesta_exitosa": {
+            "edificio": "object",
+            "personal": "array",
+            "productos": "array",
+            "tareas": "array",
+            "horasTrabajadas": "array"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/edificio/newEdificio",
+          "middleware": "ninguno (DEBERÍA tener validarSesion, soloAdmin)",
+          "controlador": "createEdificio",
+          "parametros": {
+            "body": [
+              "nombre",
+              "direccion",
+              "frecuencia_limpieza",
+              "litros_estimados",
+              "duracion_estimada_minutos",
+              "activo"
+            ]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "nombre": "string",
+            "activo": "boolean"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/edificio/estadoEdificio/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "activarDesactivarEdificio",
+          "parametros": {
+            "params": ["id"],
+            "body": ["activo"]
+          },
+          "respuesta_exitosa": {
+            "mensaje": "string",
+            "edificio": "object"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/edificio/editEdificio/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "editarDatosEdificio",
+          "parametros": {
+            "params": ["id"],
+            "body": [
+              "nombre",
+              "direccion",
+              "frecuencia_limpieza",
+              "litros_estimados",
+              "duracion_estimada_minutos",
+              "activo"
+            ]
+          },
+          "respuesta_exitosa": {
+            "message": "Edificio actualizado correctamente",
+            "edificio": "object"
+          },
+          "estado": "✓ FUNCIONAL"
+        }
+      ]
+    },
+    {
+      "modulo": "PERSONAL",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/persona/newPersonaConEdificio",
+          "middleware": "ninguno (DEBERÍA tener validarSesion, soloAdmin)",
+          "controlador": "createPersona",
+          "parametros": {
+            "body": [
+              "nombre",
+              "apellido",
+              "telefono",
+              "email",
+              "rol",
+              "activo",
+              "edificio_id",
+              "dias"
+            ]
+          },
+          "respuesta_exitosa": {
+            "success": true,
+            "message": "Personal creado y asignado correctamente",
+            "data": "object"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/persona/listPersonal",
+          "middleware": "ninguno",
+          "controlador": "listPersona",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "nombre": "string",
+              "apellido": "string",
+              "email": "string",
+              "rol": "string",
+              "edificios": "array"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/persona/asignar",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "asignarDiasEdificio",
+          "parametros": {
+            "body": ["persona_id", "edificio_id", "dias"]
+          },
+          "respuesta_exitosa": {
+            "message": "Asignación creada correctamente",
+            "data": "object"
+          },
+          "estado": "❌ CONTROLADOR NO ENCONTRADO"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/persona/editar/:id",
+          "middleware": "ninguno",
+          "controlador": "editarDatosPerso",
+          "parametros": {
+            "params": ["id"]
+          },
+          "respuesta_exitosa": "object",
+          "estado": "❌ CONTROLADOR VACÍO"
+        }
+      ]
+    },
+    {
+      "modulo": "HORARIOS",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/horario/asignar",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "asignarHorarios",
+          "parametros": {
+            "body": ["persona_id", "hora_inicio", "hora_fin"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "persona_id": "number",
+            "hora_inicio": "time",
+            "hora_fin": "time"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/horario/modificar/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "modificarHorario",
+          "parametros": {
+            "params": ["id"],
+            "body": ["hora_inicio", "hora_fin"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "hora_inicio": "time",
+            "hora_fin": "time"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/horario/persona/:persona_id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "obtenerHorarioPorPersona",
+          "parametros": {
+            "params": ["persona_id"]
+          },
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "persona_id": "number",
+              "hora_inicio": "time",
+              "hora_fin": "time"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        }
+      ]
+    },
+    {
+      "modulo": "PRODUCTOS",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/producto/newProducto",
+          "middleware": "ninguno (DEBERÍA tener validarSesion, soloAdmin)",
+          "controlador": "addProducto",
+          "parametros": {
+            "body": ["nombre", "unidad", "stock_actual", "stock_minimo"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "nombre": "string",
+            "stock_actual": "number",
+            "stock_minimo": "number"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/producto/productList",
+          "middleware": "ninguno",
+          "controlador": "listProductos",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "nombre": "string",
+              "unidad": "string",
+              "stock_actual": "number"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/producto/stock/:id",
+          "middleware": "ninguno (DEBERÍA tener validarSesion, soloAdmin)",
+          "controlador": "actualizarStock",
+          "parametros": {
+            "params": ["id"],
+            "body": ["stock_actual"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "nombre": "string",
+            "stock_actual": "number"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/producto/asignar-edificio",
+          "middleware": "ninguno (DEBERÍA tener validarSesion, soloAdmin)",
+          "controlador": "asignarProductoEdificio",
+          "parametros": {
+            "body": [
+              "edificio_id",
+              "producto_id",
+              "cantidad_actual",
+              "cantidad_minima"
+            ]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "edificio_id": "number",
+            "producto_id": "number"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/producto/faltantes",
+          "middleware": "ninguno",
+          "controlador": "productosFaltantes",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "edificio": "string",
+              "producto": "string",
+              "actual": "number",
+              "minimo": "number"
+            }
+          ],
+          "estado": "❌ ERROR DE SINTAXIS (undefined sequelize)"
+        }
+      ]
+    },
+    {
+      "modulo": "PERSONA-EDIFICIO",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/persona-edificio/asignar",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "asignarEmpleadoEdificio",
+          "parametros": {
+            "body": ["persona_id", "edificio_id", "activo"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "persona_id": "number",
+            "edificio_id": "number",
+            "activo": "boolean"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/persona-edificio/dias",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "definirDiasTrabajo",
+          "parametros": {
+            "body": ["persona_edificio_id", "dia_semana"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "dia_semana": "string"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/persona-edificio/listar",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "listarAsignacion",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "persona_id": "number",
+              "edificio_id": "number",
+              "dia_semana": "string"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/persona-edificio/quitar/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "quitarAsignacion",
+          "parametros": {
+            "params": ["id"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "activo": false
+          },
+          "estado": "✓ FUNCIONAL"
+        }
+      ]
+    },
+    {
+      "modulo": "TAREAS",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/tarea/new",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "crearTarea",
+          "parametros": {
+            "body": ["nombre", "descripcion", "prioritaria", "activo"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "nombre": "string",
+            "prioritaria": "boolean",
+            "activo": "boolean"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/tarea/editar/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "editarTarea",
+          "parametros": {
+            "params": ["id"],
+            "body": ["nombre", "descripcion", "prioritaria", "activo"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "nombre": "string"
+          },
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/tarea/activas",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "listarTareasActivas",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "nombre": "string",
+              "prioritaria": "boolean",
+              "activo": "boolean"
+            }
+          ],
+          "estado": "✓ FUNCIONAL"
+        },
+        {
+          "metodo": "PATCH",
+          "endpoint": "/tarea/prioritaria/:id",
+          "middleware": "validarSesion, soloAdmin",
+          "controlador": "marcarTareaPrioritaria",
+          "parametros": {
+            "params": ["id"],
+            "body": ["prioritaria"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "prioritaria": "boolean"
+          },
+          "estado": "✓ FUNCIONAL"
+        }
+      ]
+    },
+    {
+      "modulo": "REGISTRO-TAREAS",
+      "rutas": [
+        {
+          "metodo": "PUT",
+          "endpoint": "/registro-tarea/:id/realizada",
+          "middleware": "ninguno (DEBERÍA tener validarSesion)",
+          "controlador": "marcarTareaRealizada",
+          "parametros": {
+            "params": ["id"],
+            "body": ["realizada"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "realizada": "boolean"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "PUT",
+          "endpoint": "/registro-tarea/:id/inconveniente",
+          "middleware": "ninguno (DEBERÍA tener validarSesion)",
+          "controlador": "registrarInconveniente",
+          "parametros": {
+            "params": ["id"],
+            "body": ["inconveniente"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "inconveniente": "string"
+          },
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/registro-tarea/pendientes",
+          "middleware": "ninguno (DEBERÍA tener validarSesion)",
+          "controlador": "verTareasPendientes",
+          "parametros": {},
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "realizada": false,
+              "tarea": "object"
+            }
+          ],
+          "estado": "✓ FUNCIONAL (pero SIN protección)"
+        }
+      ]
+    },
+    {
+      "modulo": "TRABAJO",
+      "rutas": [
+        {
+          "metodo": "POST",
+          "endpoint": "/registro-trabajo/iniciar",
+          "middleware": "ninguno (NO EXISTE)",
+          "controlador": "iniciarJornada",
+          "parametros": {
+            "body": ["persona_id", "edificio_id"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "persona_id": "number",
+            "edificio_id": "number",
+            "fecha": "date",
+            "hora_inicio": "time"
+          },
+          "estado": "❌ RUTA NO EXISTE"
+        },
+        {
+          "metodo": "POST",
+          "endpoint": "/registro-trabajo/finalizar",
+          "middleware": "ninguno (NO EXISTE)",
+          "controlador": "finalizarJornada",
+          "parametros": {
+            "body": ["id"]
+          },
+          "respuesta_exitosa": {
+            "id": "number",
+            "hora_fin": "time",
+            "horas_totales": "number"
+          },
+          "estado": "❌ CONTROLADOR VACÍO y RUTA NO EXISTE"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/registro-trabajo/diario",
+          "middleware": "ninguno (NO EXISTE)",
+          "controlador": "obtenerRegistrodiario",
+          "parametros": {
+            "query": ["fecha"]
+          },
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "persona_id": "number",
+              "fecha": "date",
+              "horas_totales": "number"
+            }
+          ],
+          "estado": "❌ CONTROLADOR VACÍO y RUTA NO EXISTE"
+        },
+        {
+          "metodo": "GET",
+          "endpoint": "/registro-trabajo/persona/:id",
+          "middleware": "ninguno (NO EXISTE)",
+          "controlador": "obtenerRegistrosPorpersona",
+          "parametros": {
+            "params": ["id"]
+          },
+          "respuesta_exitosa": [
+            {
+              "id": "number",
+              "fecha": "date",
+              "horas_totales": "number"
+            }
+          ],
+          "estado": "❌ CONTROLADOR VACÍO y RUTA NO EXISTE"
+        }
+      ]
+    }
+  ],
+  "controladores_con_errores": [
+    {
+      "archivo": "productosFaltantes.js",
+      "ruta": "back/src/controller/producto/productosFaltantes.js",
+      "error": "ERROR DE SINTAXIS",
+      "descripcion": "Usa 'sequelize.col' pero no importa sequelize",
+      "linea": 6,
+      "codigo": "cantidad_actual: { [Op.lt]: sequelize.col('cantidad_minima') }",
+      "solucion": "Importar sequelize o usar la sintaxis correcta de Sequelize",
+      "prioridad": "ALTA",
+      "impacto": "El endpoint /producto/faltantes va a fallar en runtime"
+    },
+    {
+      "archivo": "editarDatosPerso.js",
+      "ruta": "back/src/controller/persona/editarDatosPerso.js",
+      "error": "ARCHIVO VACÍO",
+      "descripcion": "El archivo está completamente vacío",
+      "linea": 0,
+      "codigo": "",
+      "solucion": "Implementar la función editarDatosPerso",
+      "prioridad": "MEDIA",
+      "impacto": "No se puede editar datos de personal"
+    },
+    {
+      "archivo": "finalizarJornada.js",
+      "ruta": "back/src/controller/registrotrabajo/finalizarJornada.js",
+      "error": "ARCHIVO VACÍO",
+      "descripcion": "El archivo está completamente vacío",
+      "linea": 0,
+      "codigo": "",
+      "solucion": "Implementar la función finalizarJornada",
+      "prioridad": "ALTA",
+      "impacto": "No se puede finalizar jornadas de trabajo"
+    },
+    {
+      "archivo": "iniciarJordanada.js",
+      "ruta": "back/src/controller/registrotrabajo/iniciarJordanada.js",
+      "error": "ARCHIVO VACÍO",
+      "descripcion": "El archivo está completamente vacío pero existe una función similar en calcularHorasTra.js",
+      "linea": 0,
+      "codigo": "",
+      "solucion": "Ver calcularHorasTra.js que tiene una función iniciarJornada",
+      "prioridad": "MEDIA",
+      "impacto": "Duplicidad de código - necesita organización"
+    },
+    {
+      "archivo": "obtenerRegistrodiario.js",
+      "ruta": "back/src/controller/registrotrabajo/obtenerRegistrodiario.js",
+      "error": "ARCHIVO VACÍO",
+      "descripcion": "El archivo está completamente vacío",
+      "linea": 0,
+      "codigo": "",
+      "solucion": "Implementar la función obtenerRegistrodiario",
+      "prioridad": "MEDIA",
+      "impacto": "No se pueden obtener registros diarios"
+    },
+    {
+      "archivo": "obtenerRegistrosPorpersona.js",
+      "ruta": "back/src/controller/registrotrabajo/obtenerRegistrosPorpersona.js",
+      "error": "ARCHIVO VACÍO",
+      "descripcion": "El archivo está completamente vacío",
+      "linea": 0,
+      "codigo": "",
+      "solucion": "Implementar la función obtenerRegistrosPorpersona",
+      "prioridad": "MEDIA",
+      "impacto": "No se pueden obtener registros por persona"
+    },
+    {
+      "archivo": "adminRoutes.js",
+      "ruta": "back/src/routes/adminRoutes.js",
+      "error": "FUNCIONES NO IMPLEMENTADAS",
+      "descripcion": "Importa getEstadisticas y exportarHorasExcel pero no existen en verResumenGeneral.js",
+      "linea": 4,
+      "codigo": "const { exportarHorasExcel } = require('../controller/admin/verResumenGeneral')\nconst { getEstadisticas } = require('../controller/admin/verResumenGeneral')",
+      "solucion": "Implementar ambas funciones en verResumenGeneral.js",
+      "prioridad": "MEDIA",
+      "impacto": "Los endpoints /admin/horasExel y /admin/estadisticas fallarán"
+    },
+    {
+      "archivo": "personaRoutes.js",
+      "ruta": "back/src/routes/personaRoutes.js",
+      "error": "CONTROLADOR NO ENCONTRADO",
+      "descripcion": "Intenta importar asignarDiasEdificio pero no existe en el directorio persona/",
+      "linea": 3,
+      "codigo": "const asignarDiasEdificio = require('../controller/persona/asignarDiasEdificios');",
+      "solucion": "Crear el archivo asignarDiasEdificios.js o usar la función correcta",
+      "prioridad": "MEDIA",
+      "impacto": "La ruta POST /persona/asignar no funcionará"
+    }
+  ],
+  "problemas_seguridad": [
+    {
+      "tipo": "FALTA DE AUTENTICACIÓN",
+      "endpoints_afectados": [
+        "POST /edificio/newEdificio",
+        "POST /persona/newPersonaConEdificio",
+        "POST /producto/newProducto",
+        "PUT /producto/stock/:id",
+        "POST /producto/asignar-edificio",
+        "PUT /registro-tarea/:id/realizada",
+        "PUT /registro-tarea/:id/inconveniente",
+        "GET /registro-tarea/pendientes",
+        "GET /edificio/detallesEdificio/:id",
+        "GET /persona/listPersonal",
+        "GET /producto/productList",
+        "GET /producto/faltantes"
+      ],
+      "severidad": "ALTA",
+      "descripcion": "Estos endpoints no tienen middleware validarSesion",
+      "solucion": "Agregar middleware validarSesion a todos los endpoints que lo requieren"
+    },
+    {
+      "tipo": "FALTA DE AUTORIZACIÓN",
+      "endpoints_afectados": [
+        "POST /edificio/newEdificio",
+        "POST /persona/newPersonaConEdificio",
+        "POST /producto/newProducto",
+        "PUT /producto/stock/:id",
+        "POST /producto/asignar-edificio"
+      ],
+      "severidad": "ALTA",
+      "descripcion": "Estos endpoints pueden ser usados por cualquier usuario autenticado",
+      "solucion": "Agregar middleware soloAdmin para operaciones críticas"
+    }
+  ],
+  "inconsistencias_arquitectura": [
+    {
+      "tipo": "IMPORTACIONES INCONSISTENTES",
+      "descripcion": "Algunos controladores exportan funciones de forma diferente",
+      "ejemplos": [
+        {
+          "archivo1": "crearEdificio.js",
+          "patrón1": "module.exports = createEdificio;",
+          "archivo2": "editarDatosEdificio.js",
+          "patrón2": "module.exports = { editarDatosEdificio };",
+          "descripcion": "Algunos exportan directamente, otros con destructuring"
+        }
+      ],
+      "impacto": "Riesgo de confusión en importaciones",
+      "prioridad": "BAJA"
+    },
+    {
+      "tipo": "MANEJO DE ERRORES INCONSISTENTE",
+      "descripcion": "Algunos controladores devuelven { error: msg }, otros lanzan excepciones",
+      "ejemplos": [
+        {
+          "archivo": "crearPersona.js",
+          "tipo": "Devuelve objeto"
+        },
+        {
+          "archivo": "detallesEdificio.js",
+          "tipo": "Devuelve objeto con error"
+        }
+      ],
+      "impacto": "Comportamiento impredecible en las rutas",
+      "prioridad": "MEDIA"
+    },
+    {
+      "tipo": "FALTA DE RUTAS PARA CONTROLADORES",
+      "descripcion": "Hay controladores implementados pero sin rutas asociadas",
+      "ejemplos": [
+        {
+          "controlador": "calcularHorasTra.js",
+          "problema": "No tiene ruta en ningún archivo de routes"
+        }
+      ],
+      "impacto": "Código muerto o funcionalidad no accesible",
+      "prioridad": "MEDIA"
+    }
+  ],
+  "acciones_redux_existentes": [
+    {
+      "nombre": "edificioAction.js",
+      "acciones": [
+        {
+          "nombre": "crearEdificios",
+          "endpoint": "POST /edificio/newEdificio",
+          "parametros": "edificioData",
+          "dispatch": "NEW_EDIFICIO",
+          "estado": "✓ IMPLEMENTADA"
+        },
+        {
+          "nombre": "listaEdificio",
+          "endpoint": "GET /edificio/listEdificio",
+          "parametros": "ninguno",
+          "dispatch": "LIST_EDIFICIO",
+          "estado": "✓ IMPLEMENTADA"
+        },
+        {
+          "nombre": "detalleEdificio",
+          "endpoint": "GET /edificio/detallesEdificio/:id",
+          "parametros": "id",
+          "dispatch": "GET_DETALLE_EDIFICIO",
+          "estado": "✓ IMPLEMENTADA"
+        }
+      ]
+    },
+    {
+      "nombre": "personalAction.js",
+      "acciones": [
+        {
+          "nombre": "crearPersona",
+          "endpoint": "POST /persona/newPersonaConEdificio",
+          "parametros": "data",
+          "dispatch": "NEW_PERSONA",
+          "estado": "✓ IMPLEMENTADA"
+        },
+        {
+          "nombre": "listAllPersonal",
+          "endpoint": "GET /persona/listPersonal",
+          "parametros": "ninguno",
+          "dispatch": "GET_ALLPERSONAL",
+          "estado": "✓ IMPLEMENTADA"
+        }
+      ]
+    },
+    {
+      "nombre": "productosAction.js",
+      "acciones": [
+        {
+          "nombre": "ingresarProducto",
+          "endpoint": "POST /producto/newProducto",
+          "parametros": "productoData",
+          "dispatch": "NEW_PRODUCTO",
+          "estado": "✓ IMPLEMENTADA"
+        },
+        {
+          "nombre": "listadoProducto",
+          "endpoint": "GET /producto/productList",
+          "parametros": "ninguno",
+          "dispatch": "LISTA_PRODUCTO",
+          "estado": "✓ IMPLEMENTADA"
+        },
+        {
+          "nombre": "asignarProducto",
+          "endpoint": "POST /producto/asignar-edificio",
+          "parametros": "productoData",
+          "dispatch": "POST_ASIGNAR_PRODUCTO",
+          "estado": "✓ IMPLEMENTADA"
+        }
+      ]
+    }
+  ],
+  "acciones_redux_necesarias": [
+    {
+      "modulo": "ADMINISTRACIÓN",
+      "acciones_faltantes": [
+        {
+          "nombre": "getResumenGeneral",
+          "endpoint": "GET /admin/resumen",
+          "dispatch": "GET_RESUMEN_GENERAL",
+          "prioridad": "ALTA"
+        },
+        {
+          "nombre": "getHorasTrabajadas",
+          "endpoint": "GET /admin/horas",
+          "dispatch": "GET_HORAS_TRABAJADAS",
+          "prioridad": "ALTA"
+        },
+        {
+          "nombre": "getAusencias",
+          "endpoint": "GET /admin/ausencias",
+          "dispatch": "GET_AUSENCIAS",
+          "prioridad": "ALTA"
+        },
+        {
+          "nombre": "getIncidencias",
+          "endpoint": "GET /admin/incidencias",
+          "dispatch": "GET_INCIDENCIAS",
+          "prioridad": "ALTA"
+        },
+        {
+          "nombre": "getEstadisticas",
+          "endpoint": "GET /admin/estadisticas",
+          "dispatch": "GET_ESTADISTICAS",
+          "prioridad": "MEDIA"
+        }
+      ]
+    },
+    {
+      "modulo": "EDIFICIOS",
+      "acciones_faltantes": [
+        {
+          "nombre": "editarEdificio",
+          "endpoint": "PUT /edificio/editEdificio/:id",
+          "dispatch": "EDIT_EDIFICIO",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "activarDesactivarEdificio",
+          "endpoint": "PUT /edificio/estadoEdificio/:id",
+          "dispatch": "TOGGLE_EDIFICIO",
+          "prioridad": "MEDIA"
+        }
+      ]
+    },
+    {
+      "modulo": "HORARIOS",
+      "acciones_faltantes": [
+        {
+          "nombre": "asignarHorario",
+          "endpoint": "POST /horario/asignar",
+          "dispatch": "NEW_HORARIO",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "modificarHorario",
+          "endpoint": "PUT /horario/modificar/:id",
+          "dispatch": "EDIT_HORARIO",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "obtenerHorarioPorPersona",
+          "endpoint": "GET /horario/persona/:persona_id",
+          "dispatch": "GET_HORARIOS_PERSONA",
+          "prioridad": "MEDIA"
+        }
+      ]
+    },
+    {
+      "modulo": "TAREAS",
+      "acciones_faltantes": [
+        {
+          "nombre": "crearTarea",
+          "endpoint": "POST /tarea/new",
+          "dispatch": "NEW_TAREA",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "editarTarea",
+          "endpoint": "PUT /tarea/editar/:id",
+          "dispatch": "EDIT_TAREA",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "listarTareasActivas",
+          "endpoint": "GET /tarea/activas",
+          "dispatch": "LIST_TAREAS_ACTIVAS",
+          "prioridad": "MEDIA"
+        },
+        {
+          "nombre": "marcarTareaPrioritaria",
+          "endpoint": "PATCH /tarea/prioritaria/:id",
+          "dispatch": "TOGGLE_TAREA_PRIORITARIA",
+          "prioridad": "BAJA"
+        }
+      ]
+    }
+  ],
+  "plan_arreglos_priorizado": [
+    {
+      "numero": 1,
+      "prioridad": "CRÍTICA",
+      "tarea": "Arreglar error de sintaxis en productosFaltantes.js",
+      "descripcion": "El endpoint GET /producto/faltantes está broken",
+      "archivo": "back/src/controller/producto/productosFaltantes.js",
+      "solucion": "Importar sequelize o usar Sequelize.col correctamente",
+      "estimado": "15 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 2,
+      "prioridad": "CRÍTICA",
+      "tarea": "Implementar finalizarJornada.js",
+      "descripcion": "Función crítica para cierre de jornadas",
+      "archivo": "back/src/controller/registrotrabajo/finalizarJornada.js",
+      "solucion": "Implementar lógica para calcular horas y cerrar registro",
+      "estimado": "30 minutos",
+      "dependencias": ["RegistroTrabajo model debe estar correctamente configurado"]
+    },
+    {
+      "numero": 3,
+      "prioridad": "ALTA",
+      "tarea": "Crear archivo asignarDiasEdificios.js",
+      "descripcion": "Controlador faltante para asignar días de trabajo",
+      "archivo": "back/src/controller/persona/asignarDiasEdificios.js",
+      "solucion": "Crear controlador que maneje la asignación de días",
+      "estimado": "20 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 4,
+      "prioridad": "ALTA",
+      "tarea": "Agregar middleware de autenticación",
+      "descripcion": "Proteger endpoints críticos sin autenticación",
+      "archivo": "back/src/routes/*.js",
+      "solucion": "Agregar validarSesion a endpoints de creación/actualización",
+      "estimado": "45 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 5,
+      "prioridad": "ALTA",
+      "tarea": "Implementar funciones faltantes en admin",
+      "descripcion": "getEstadisticas y exportarHorasExcel",
+      "archivo": "back/src/controller/admin/verResumenGeneral.js",
+      "solucion": "Implementar ambas funciones",
+      "estimado": "60 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 6,
+      "prioridad": "MEDIA",
+      "tarea": "Implementar controladores de registro de trabajo",
+      "descripcion": "obtenerRegistrodiario.js y obtenerRegistrosPorpersona.js",
+      "archivo": "back/src/controller/registrotrabajo/*",
+      "solucion": "Implementar ambas funciones",
+      "estimado": "40 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 7,
+      "prioridad": "MEDIA",
+      "tarea": "Implementar editarDatosPerso.js",
+      "descripcion": "Edición de datos de personal",
+      "archivo": "back/src/controller/persona/editarDatosPerso.js",
+      "solucion": "Implementar función de actualización",
+      "estimado": "20 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 8,
+      "prioridad": "MEDIA",
+      "tarea": "Crear rutas para registro de trabajo",
+      "descripcion": "Crear archivo registroTrabajoRoutes.js",
+      "archivo": "back/src/routes/registroTrabajoRoutes.js",
+      "solucion": "Crear rutas para iniciar, finalizar y obtener registros",
+      "estimado": "30 minutos",
+      "dependencias": ["Completar controladores de registroTrabajo"]
+    },
+    {
+      "numero": 9,
+      "prioridad": "MEDIA",
+      "tarea": "Crear acciones Redux para Admin",
+      "descripcion": "Crear adminAction.js con todas las acciones",
+      "archivo": "front/src/redux/action/adminAction.js",
+      "solucion": "Crear archivo con acciones para dashboard",
+      "estimado": "30 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 10,
+      "prioridad": "MEDIA",
+      "tarea": "Crear acciones Redux para Tareas",
+      "descripcion": "Crear tareaAction.js",
+      "archivo": "front/src/redux/action/tareaAction.js",
+      "solucion": "Crear archivo con acciones para gestión de tareas",
+      "estimado": "30 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 11,
+      "prioridad": "MEDIA",
+      "tarea": "Crear acciones Redux para Horarios",
+      "descripcion": "Crear horarioAction.js",
+      "archivo": "front/src/redux/action/horarioAction.js",
+      "solucion": "Crear archivo con acciones para gestión de horarios",
+      "estimado": "30 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 12,
+      "prioridad": "BAJA",
+      "tarea": "Estandarizar manejo de errores",
+      "descripcion": "Hacer consistente el manejo de errores en todos los controladores",
+      "archivo": "back/src/controller/**/*",
+      "solucion": "Crear utilidad de manejo de errores estándar",
+      "estimado": "120 minutos",
+      "dependencias": []
+    },
+    {
+      "numero": 13,
+      "prioridad": "BAJA",
+      "tarea": "Estandarizar exportaciones",
+      "descripcion": "Usar siempre module.exports = { funcion } o siempre directo",
+      "archivo": "back/src/controller/**/*",
+      "solucion": "Elegir un patrón y aplicarlo a todos",
+      "estimado": "90 minutos",
+      "dependencias": []
+    }
+  ],
+  "resumen_final": {
+    "total_endpoints": 45,
+    "endpoints_funcionales": 35,
+    "endpoints_con_problemas": 10,
+    "controladores_implementados": 31,
+    "controladores_vacios": 4,
+    "controladores_con_errores_sintaxis": 1,
+    "rutas_faltantes": 4,
+    "acciones_redux_implementadas": 8,
+    "acciones_redux_necesarias": 8,
+    "tiempo_estimado_arreglos": "480 minutos (8 horas)",
+    "recomendaciones": [
+      "Empezar por arreglar los errores críticos (productos faltantes y finalizar jornada)",
+      "Luego completar controladores vacíos",
+      "Después agregar middleware de seguridad",
+      "Finalmente crear acciones Redux y componentes del frontend",
+      "Considerar implementar una utilidad centralizada para manejo de errores y respuestas HTTP",
+      "Documentar la API con Swagger/OpenAPI para mayor claridad"
+    ]
+  }
+}

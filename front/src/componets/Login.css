@@ -1,0 +1,167 @@
+/* ===============================
+   VARIABLES DE COLOR
+================================= */
+:root {
+  --azul-principal: #0B5FA5;
+  --azul-oscuro: #0A3D73;
+  --verde-principal: #2DBE60;
+  --verde-oscuro: #1E8E3E;
+  --blanco: #ffffff;
+  --gris-texto: #555;
+  --gris-borde: #e0e0e0;
+}
+
+/* ===============================
+   CONTENEDOR PRINCIPAL
+================================= */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    var(--azul-principal),
+    var(--verde-principal)
+  );
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===============================
+   TARJETA
+================================= */
+.login-card {
+  background: var(--blanco);
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ===============================
+   HEADER
+================================= */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--azul-oscuro);
+}
+
+.login-header p {
+  margin-top: 8px;
+  color: var(--gris-texto);
+  font-size: 14px;
+}
+
+/* ===============================
+   FORMULARIO
+================================= */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--azul-oscuro);
+  font-weight: 600;
+}
+
+.form-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--gris-borde);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--verde-principal);
+  box-shadow: 0 0 0 3px rgba(45, 190, 96, 0.2);
+}
+
+/* ===============================
+   MENSAJE DE ERROR
+================================= */
+.error-message {
+  background-color: #ffe6e6;
+  color: #d32f2f;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* ===============================
+   BOTÓN
+================================= */
+.login-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--blanco);
+  background: linear-gradient(
+    135deg,
+    var(--azul-principal),
+    var(--verde-principal)
+  );
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===============================
+   ANIMACIÓN
+================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px;
+  }
+
+  .login-header h1 {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,75 @@
+.mi-jornada {
+  min-height: 100vh;
+  background: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.jornada-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.jornada-card h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.fecha-hoy {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #64748b;
+}
+
+.btn-marcar {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-marcar:hover {
+  background: #2563eb;
+}
+
+.btn-marcar:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Mensajes */
+
+.mensaje {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mensaje.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.mensaje.info {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.mensaje.error {
+  background: #fee2e2;
+  color: #991b1b;
+}

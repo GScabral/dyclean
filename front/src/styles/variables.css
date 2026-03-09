@@ -1,0 +1,290 @@
+/* ============================================
+   SISTEMA DE VARIABLES CSS - TEMA DYCLEAN
+   ============================================ */
+
+:root {
+  /* ─────────────────────────────────────
+     COLORES PRINCIPALES - PALETA DYCLEAN
+     ───────────────────────────────────── */
+
+  /* Primarios - Azul Marina DyClean */
+  --color-primary: #005A9C;
+  --color-primary-light: #0073C3;
+  --color-primary-dark: #003F6B;
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #e0f0ff;
+  --color-primary-200: #c1e0ff;
+
+  /* Secundarios - Verde DyClean */
+  --color-secondary: #52B954;
+  --color-secondary-light: #6FCC72;
+  --color-secondary-dark: #3D8A3F;
+  --color-secondary-50: #f0fef3;
+
+  /* Acentos - Cyan/Celeste */
+  --color-accent: #06B6D4;
+  --color-accent-light: #22D3EE;
+  --color-accent-dark: #0891B2;
+
+  /* Estados */
+  --color-success: #52B954;
+  --color-success-light: #6FCC72;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
+  --color-danger: #ef4444;
+  --color-danger-light: #f87171;
+  --color-danger-dark: #dc2626;
+  --color-info: #06B6D4;
+  --color-info-light: #22d3ee;
+
+  /* Neutros - Escala de grises profesional */
+  --color-gray-0: #ffffff;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+
+  /* Fondo y Superficies - Tema oscuro profesional */
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-surface: #1e293b;
+  --color-surface-hover: #334155;
+  --color-surface-active: #475569;
+  --color-surface-disabled: #64748b;
+  --color-surface-border: #475569;
+
+  /* Bordes */
+  --color-border: #334155;
+  --color-border-light: #475569;
+  --color-border-dark: #1e293b;
+  --color-border-primary: #005A9C;
+
+  /* Texto */
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-light: #f8fafc;
+  --color-text-inverse: #0f172a;
+
+  /* ─────────────────────────────────────
+     TIPOGRAFÍA
+     ───────────────────────────────────── */
+
+  /* Familias */
+  --font-family-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: "Fira Code", "Courier New", monospace;
+
+  /* Tamaños */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Pesos */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Altura de línea */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ─────────────────────────────────────
+     ESPACIADO
+     ───────────────────────────────────── */
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ─────────────────────────────────────
+     BORDES Y RADIOS
+     ───────────────────────────────────── */
+
+  --border-radius-none: 0;
+  --border-radius-sm: 0.25rem;
+  --border-radius-base: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  --border-radius-2xl: 1.5rem;
+  --border-radius-3xl: 2rem;
+  --border-radius-full: 9999px;
+
+  --border-width: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  /* ─────────────────────────────────────
+     SOMBRAS - TEMA OSCURO
+     ───────────────────────────────────── */
+
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+  --shadow-elevation-1: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-elevation-2: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --shadow-elevation-3: 0 12px 24px rgba(0, 0, 0, 0.5);
+
+  /* Sombras de color corporativo */
+  --shadow-primary: 0 8px 16px 0 rgba(0, 90, 156, 0.25);
+  --shadow-secondary: 0 8px 16px 0 rgba(82, 185, 84, 0.25);
+  --shadow-accent: 0 8px 16px 0 rgba(6, 182, 212, 0.25);
+
+  /* ─────────────────────────────────────
+     TRANSICIONES Y ANIMACIONES
+     ───────────────────────────────────── */
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  --easing-linear: linear;
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --easing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --transition-all: all var(--duration-base) var(--easing-in-out);
+  --transition-colors: color var(--duration-base) var(--easing-in-out),
+    background-color var(--duration-base) var(--easing-in-out),
+    border-color var(--duration-base) var(--easing-in-out);
+
+  /* ─────────────────────────────────────
+     Z-INDEX
+     ───────────────────────────────────── */
+
+  --z-hide: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --z-notification: 800;
+
+  /* ─────────────────────────────────────
+     COMPONENTES - TAMAÑOS ESTÁNDAR
+     ───────────────────────────────────── */
+
+  --input-height-sm: 2rem;
+  --input-height-base: 2.5rem;
+  --input-height-lg: 3rem;
+
+  --sidebar-width: 16rem;
+  --sidebar-width-collapsed: 5rem;
+
+  --header-height: 4rem;
+
+  /* ─────────────────────────────────────
+     GRADIENTES CORPORATIVOS DYCLEAN
+     ───────────────────────────────────── */
+
+  --gradient-primary: linear-gradient(135deg, #005A9C 0%, #003F6B 100%);
+  --gradient-secondary: linear-gradient(135deg, #52B954 0%, #3D8A3F 100%);
+  --gradient-accent: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+  --gradient-primary-light: linear-gradient(135deg, #0073C3 0%, #005A9C 100%);
+  --gradient-success: linear-gradient(135deg, #52B954 0%, #3D8A3F 100%);
+  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* ─────────────────────────────────────
+   ANIMACIONES GLOBALES
+   ───────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}

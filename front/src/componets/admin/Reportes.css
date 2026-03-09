@@ -1,0 +1,245 @@
+/* ===============================
+VARIABLES CORPORATIVAS
+================================= */
+:root {
+  --azul-principal: #0B5FA5;
+  --azul-oscuro: #0A3D73;
+  --verde-principal: #2DBE60;
+  --verde-oscuro: #1E8E3E;
+  --blanco: #ffffff;
+  --gris-fondo: #f4f6f9;
+  --gris-borde: #e0e0e0;
+  --gris-texto: #555;
+}
+
+/* ===============================
+CONTENEDOR PRINCIPAL
+================================= */
+.reportes-container {
+  min-height: 100vh;
+  padding: 40px;
+  background: linear-gradient(135deg,
+      rgba(11, 95, 165, 0.04),
+      rgba(45, 190, 96, 0.04));
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reportes-container h1 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+FILTROS PRINCIPALES (TABS)
+================================= */
+.filtro-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filtro-buttons button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--gris-borde);
+  background: var(--blanco);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filtro-buttons button:hover {
+  border-color: var(--verde-principal);
+}
+
+.filtro-buttons button.active {
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  color: white;
+  border: none;
+}
+
+/* ===============================
+FILTRO FECHA
+================================= */
+.filtro-fecha {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+}
+
+.filtro-fecha button {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--gris-borde);
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.filtro-fecha button.active {
+  background: var(--verde-principal);
+  color: white;
+  border: none;
+}
+
+/* ===============================
+SECCIÓN RESUMEN
+================================= */
+.resumen-section {
+  background: var(--blanco);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  color: white;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ===============================
+   TABLAS PROFESIONALES
+================================= */
+.reportes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--blanco);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.reportes-table thead {
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  color: white;
+}
+
+.reportes-table th,
+.reportes-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.reportes-table tbody tr {
+  border-bottom: 1px solid var(--gris-borde);
+  transition: 0.2s;
+}
+
+.reportes-table tbody tr:hover {
+  background-color: rgba(45, 190, 96, 0.05);
+}
+
+/* ===============================
+   ESTADOS (BADGES)
+================================= */
+.estado {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.estado.pendiente {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.estado.resuelto {
+  background: #d4edda;
+  color: #155724;
+}
+
+.estado.en_proceso {
+  background: #cce5ff;
+  color: #004085;
+}
+
+/* ===============================
+   BOTÓN RESOLVER
+================================= */
+.btn-resolver {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  color: white;
+  transition: 0.3s;
+}
+
+.btn-resolver:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   MENSAJES VACÍOS
+================================= */
+.reportes-container p {
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--blanco);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--gris-texto);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+  .reportes-container {
+    padding: 20px;
+  }
+
+  .reportes-table th,
+  .reportes-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

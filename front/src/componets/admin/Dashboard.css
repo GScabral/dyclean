@@ -1,0 +1,121 @@
+/* ===============================
+   VARIABLES (MISMA IDENTIDAD)
+================================= */
+:root {
+  --azul-principal: #0B5FA5;
+  --azul-oscuro: #0A3D73;
+  --verde-principal: #2DBE60;
+  --verde-oscuro: #1E8E3E;
+  --blanco: #ffffff;
+  --gris-texto: #555;
+  --gris-claro: #f4f6f9;
+}
+
+/* ===============================
+   CONTENEDOR PRINCIPAL
+================================= */
+.dashboard {
+  min-height: 100vh;
+  padding: 50px 40px;
+  background: linear-gradient(135deg,
+      rgba(11, 95, 165, 0.05),
+      rgba(45, 190, 96, 0.05));
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===============================
+   TÍTULO
+================================= */
+.dashboard h1 {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   GRID DE CARDS
+================================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* ===============================
+   LINK (QUITAR ESTILO POR DEFECTO)
+================================= */
+.card-link {
+  text-decoration: none;
+}
+
+/* ===============================
+   CARD
+================================= */
+.card {
+  background: var(--blanco);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(11, 95, 165, 0.2);
+  border: 1px solid var(--verde-principal);
+}
+
+/* ===============================
+   ICONO
+================================= */
+.card-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-icon {
+  transform: scale(1.2);
+}
+
+/* ===============================
+   TEXTO CARD
+================================= */
+.card span:last-child {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--azul-oscuro);
+}
+
+/* ===============================
+   EFECTO GRADIENTE EN HOVER
+================================= */
+.card:hover span:last-child {
+  background: linear-gradient(90deg,
+      var(--azul-principal),
+      var(--verde-principal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 30px 20px;
+  }
+
+  .dashboard h1 {
+    font-size: 26px;
+  }
+}

@@ -1,0 +1,66 @@
+/* CONTENEDOR GENERAL */
+.panel-supervisor {
+  padding: 40px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* HEADER INTERNO (NO CONFUNDIR CON EL HEADER NAVBAR) */
+.panel-supervisor .header-supervisor {
+  margin-bottom: 35px;
+}
+
+.panel-supervisor h1 {
+  font-size: 28px;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+
+.supervisor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-supervisor {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: #1e293b;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-supervisor:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-icon {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .panel-supervisor {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,73 @@
+.header-empleado {
+  background: white;
+  padding: 15px 40px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Info usuario */
+
+.empleado-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.nombre {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.rol {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Botón logout */
+
+.logout-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .header-empleado {
+    padding: 15px 20px;
+  }
+
+  .mi-horario,
+  .mi-jornada {
+    padding: 20px;
+  }
+}
