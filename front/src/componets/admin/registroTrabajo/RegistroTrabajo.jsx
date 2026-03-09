@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { iniciarJornada, finalizarJornada, obtenerRegistrodiario } from "../../../redux/action/registroTrabajoAction";
 import { listaEdificio } from "../../../redux/action/edificioAction";
-import "./registroTrabajo.css";
+import "./RegistroTrabajo.css";
 
 const RegistroTrabajo = () => {
     const dispatch = useDispatch();
