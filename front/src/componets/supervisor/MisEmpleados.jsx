@@ -8,7 +8,6 @@ import {
 } from "../../redux/selectors/supervisorSelectors";
 import HeaderSupervisor from "./HeaderSupervisor";
 import "./MisEmpleados.css";
-import "./misEmpleados.css";
 
 const MisEmpleados = () => {
     const dispatch = useDispatch();
