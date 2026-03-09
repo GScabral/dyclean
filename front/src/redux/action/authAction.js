@@ -4,7 +4,7 @@ export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: "LOGIN_REQUEST" });
 
-        const response = await fetch("http://localhost:3004/auth/login", {
+        const response = await fetch("https://dyclean-1.onrender.com/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
