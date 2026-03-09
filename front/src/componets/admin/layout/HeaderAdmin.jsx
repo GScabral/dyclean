@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/action/authAction";
-import "./headerAdmin.css";
+import "./HeaderAdmin.css";
 
 const HeaderAdmin = () => {
 
