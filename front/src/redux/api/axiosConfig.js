@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3004",
+    baseURL: "https://dyclean-1.onrender.com" || "http://localhost:3004",
 });
 
 // 🔐 Interceptor para agregar token automáticamente
