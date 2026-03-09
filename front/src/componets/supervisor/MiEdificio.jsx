@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { listaEdificio } from "../../redux/action/edificioAction";
 import HeaderSupervisor from "./HeaderSupervisor";
 import "./MiEdificio.css";
-import "./miEdificio.css";
 
 const MiEdificio = () => {
 

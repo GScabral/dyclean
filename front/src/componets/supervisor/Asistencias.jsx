@@ -5,7 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import { getAsistencias, getEmpleadosSupervisor } from "../../redux/action/supervisorAction";
 import { selectAsistencias, selectEmpleados, selectLoadingAsistencias, selectErrorAsistencias } from "../../redux/selectors/supervisorSelectors";
 import HeaderSupervisor from "./HeaderSupervisor";
-import "./Asistencias.css";
+import "./asistencias.css";
 
 const Asistencias = () => {
 
