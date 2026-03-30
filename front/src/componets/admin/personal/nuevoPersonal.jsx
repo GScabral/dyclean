@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { crearPersona } from "../../../redux/action/personalAction";
@@ -6,26 +7,27 @@ import "./nuevoPersonal.css";
 
 const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
 
+const initialForm = {
+    nombre: "",
+    apellido: "",
+    cedula: "",
+    telefono: "",
+    email: "",
+    password: "",
+    rol: "empleado",
+    edificio_id: "",
+    dias_trabajo: [],
+    activo: true,
+};
+
 const NewPersonal = () => {
     const dispatch = useDispatch();
+
     const edificios = useSelector(
-        (state) => state.edificioState.allEdificios
+        (state) => state.edificioState.allEdificios || []
     );
 
-    const [formData, setFormData] = useState({
-        nombre: "",
-        apellido: "",
-        cedula: "",
-        telefono: "",
-        email: "",
-        password: "",
-        rol: "empleado",
-        edificio_id: "",
-        dias_trabajo: [],
-        activo: true,
-    });
-
-
+    const [formData, setFormData] = useState(initialForm);
     const [mensaje, setMensaje] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -35,7 +37,28 @@ const NewPersonal = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+
+        setFormData((prev) => {
+            const next = {
+                ...prev,
+                [name]: value,
+            };
+
+            // Si cambia el rol, limpiamos edificio y días para evitar
+            // renders inconsistentes.
+            if (name === "rol") {
+                if (value === "admin") {
+                    next.edificio_id = "";
+                    next.dias_trabajo = [];
+                }
+
+                if (value === "supervisor") {
+                    next.dias_trabajo = [];
+                }
+            }
+
+            return next;
+        });
     };
 
     const handleDiaChange = (dia) => {
@@ -52,29 +75,26 @@ const NewPersonal = () => {
         setLoading(true);
         setMensaje("");
 
-        const response = await dispatch(crearPersona(formData));
+        try {
+            const response = await dispatch(crearPersona(formData));
 
-        if (response) {
-            setMensaje("✅ Personal creado correctamente");
-            setFormData({
-                nombre: "",
-                apellido: "",
-                cedula: "",
-                telefono: "",
-                email: "",
-                password: "",
-                rol: "empleado",
-                edificio_id: "",
-                dias_trabajo: [],
-                activo: true,
-            });
-        } else {
+            if (response) {
+                setMensaje("✅ Personal creado correctamente");
+                setFormData(initialForm);
+            } else {
+                setMensaje("❌ Error al crear el personal");
+            }
+        } catch (error) {
+            console.error(error);
             setMensaje("❌ Error al crear el personal");
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
+    const mostrarDias =
+        formData.rol === "empleado" ||
+        (formData.rol === "supervisor" && formData.edificio_id);
 
     return (
         <div className="new-personal">
@@ -88,6 +108,7 @@ const NewPersonal = () => {
                     onChange={handleChange}
                     required
                 />
+
                 <input
                     type="password"
                     name="password"
@@ -96,7 +117,6 @@ const NewPersonal = () => {
                     onChange={handleChange}
                     required
                 />
-
 
                 <input
                     name="cedula"
@@ -136,6 +156,7 @@ const NewPersonal = () => {
 
                 {formData.rol !== "admin" && (
                     <select
+                        key={`edificio-${formData.rol}`}
                         name="edificio_id"
                         value={formData.edificio_id}
                         onChange={handleChange}
@@ -146,19 +167,28 @@ const NewPersonal = () => {
                                 ? "Seleccionar edificio (obligatorio)"
                                 : "Seleccionar edificio (opcional)"}
                         </option>
-                        {edificios?.map((e) => (
-                            <option key={e.id} value={e.id}>
-                                {e.nombre}
-                            </option>
-                        ))}
+
+                        {edificios
+                            .filter((e) => e && e.id != null)
+                            .map((e, index) => (
+                                <option
+                                    key={`edificio-option-${e.id}-${index}`}
+                                    value={e.id}
+                                >
+                                    {e.nombre}
+                                </option>
+                            ))}
                     </select>
                 )}
 
-                {(formData.rol === "empleado" || (formData.rol === "supervisor" && formData.edificio_id)) && (
-                    <div className="dias-grid">
+                {mostrarDias && (
+                    <div
+                        key={`dias-${formData.rol}-${formData.edificio_id}`}
+                        className="dias-grid"
+                    >
                         {diasSemana.map((dia) => (
                             <label
-                                key={dia}
+                                key={`dia-${dia}`}
                                 className={`dia-item ${formData.dias_trabajo.includes(dia) ? "activo" : ""
                                     }`}
                             >
@@ -184,3 +214,4 @@ const NewPersonal = () => {
 };
 
 export default NewPersonal;
+
