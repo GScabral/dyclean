@@ -6,6 +6,8 @@ const saltRounds = 10;
 
 const createPersona = async (personaData) => {
     const transaction = await sequelize.transaction();
+
+    console.log(personaData)
     
     try {
         const { nombre, apellido, telefono, email, rol, activo, edificio_id, dias, password } = personaData;

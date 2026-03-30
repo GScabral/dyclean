@@ -155,16 +155,19 @@ const NewPersonal = () => {
                 )}
 
                 {(formData.rol === "empleado" || (formData.rol === "supervisor" && formData.edificio_id)) && (
-                    <div className="dias-container">
-                        <p>Días de trabajo</p>
+                    <div className="dias-grid">
                         {diasSemana.map((dia) => (
-                            <label key={dia}>
+                            <label
+                                key={dia}
+                                className={`dia-item ${formData.dias_trabajo.includes(dia) ? "activo" : ""
+                                    }`}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={formData.dias_trabajo.includes(dia)}
                                     onChange={() => handleDiaChange(dia)}
                                 />
-                                {dia}
+                                <span>{dia}</span>
                             </label>
                         ))}
                     </div>
