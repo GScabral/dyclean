@@ -3,6 +3,8 @@ import api from "../api/axiosConfig";
 
 export const crearPersona = (data) => {
     return async (dispatch) => {
+
+        console.log(data)
         try {
             const response = await api.post(
                 "/auth/crear-usuario",
@@ -14,6 +16,7 @@ export const crearPersona = (data) => {
                 payload: response.data,
             });
 
+            console.log("response:",response)
             return response;
         } catch (error) {
             console.error("ERROR_NEW_PERSONA", error);

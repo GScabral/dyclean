@@ -8,9 +8,9 @@ const createPersona = async (personaData) => {
     const transaction = await sequelize.transaction();
 
     console.log(personaData)
-    
+
     try {
-        const { nombre, apellido, telefono, email, rol, activo, edificio_id, dias, password } = personaData;
+        const { nombre, apellido, telefono, email, rol, activo, edificio_id, dias_trabajo, password } = personaData;
 
         if (!nombre || !apellido || !telefono || !email || !rol || activo === undefined) {
             throw new Error("Faltan campos obligatorios para crear el usuario")
@@ -44,9 +44,9 @@ const createPersona = async (personaData) => {
         console.log("Nuevo Cliente creado Id", newPersona.id)
 
         // Asignar la persona al edificio con sus días de trabajo (solo si es empleado y se proporciona edificio)
-        if (rol === 'empleado' && edificio_id && dias && dias.length > 0) {
+        if (rol === 'empleado' && edificio_id && dias_trabajo && dias_trabajo.length > 0) {
             // Crear un registro por cada día de trabajo
-            const asignaciones = dias.map((dia) => ({
+            const asignaciones = dias_trabajo.map((dia) => ({
                 persona_id: newPersona.id,
                 edificio_id,
                 dia_semana: dia,
