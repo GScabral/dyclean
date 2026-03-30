@@ -190,14 +190,12 @@ const Reportes = () => {
 
                     <tbody>
 
-                        {ausencias.map((a, i) => (
-
-                            <tr key={i}>
+                        {ausencias.map((a) => (
+                            <tr key={a.id || `${a.nombre}-${a.apellido}-${a.dia_semana}`}>
                                 <td>{a.nombre} {a.apellido}</td>
                                 <td>{a.edificio}</td>
                                 <td>{a.dia_semana}</td>
                             </tr>
-
                         ))}
 
                     </tbody>
