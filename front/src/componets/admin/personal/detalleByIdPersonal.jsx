@@ -66,7 +66,7 @@ const DetallePersona = () => {
                         {persona.Edificios.map((edificio) => (
                             <div key={edificio.id} className="edificio-card">
                                 <strong>{edificio.nombre}</strong>
-                                <span>Día: {edificio.PersonaEdificio.day_semana}</span>
+                                <span>Día: {edificio.PersonaEdificio.dias_trabajo}</span>
                             </div>
                         ))}
                     </div>

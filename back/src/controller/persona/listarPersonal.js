@@ -11,7 +11,9 @@ const listPersona = async () => {
             include: [
                 {
                     model: Edificio,
-                    through: { attributes: [] },
+                    through: {
+                        attributes: ["id", "persona_id", "edificio_id", "activo", "dias_semana"] // Trae el id y campos útiles
+                    },
                     attributes: ["id", "nombre", "direccion"]
                 }
             ]

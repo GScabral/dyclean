@@ -17,7 +17,7 @@ const detallePersona = async (personaId) => {
                 model: Edificio,
                 through: {
                     model: PersonaEdificio,
-
+                    attributes: ["id", "dia_semana", "activo"]
                 }
             }
         ]
