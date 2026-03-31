@@ -1,3 +1,15 @@
+// Eliminar asignación de persona a edificio
+export const eliminarAsignacionPersonaEdificio = (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await api.delete(`/persona-edificio/eliminar/${id}`);
+            return response;
+        } catch (error) {
+            console.error("ERROR_ELIMINAR_ASIGNACION", error);
+            return null;
+        }
+    };
+};
 import api from "../api/axiosConfig";
 
 // Quitar asignación de persona a edificio
