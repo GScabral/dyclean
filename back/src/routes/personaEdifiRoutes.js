@@ -1,9 +1,5 @@
 // Eliminar asignación (DELETE)
-router.delete("/eliminar/:id", validarSesion, soloAdminOSupervisor, async (req, res) => {
-    const { id } = req.params;
-    const result = await quitarAsignacion(id);
-    res.json(result);
-});
+
 const { Router } = require("express");
 
 const asignarEmpleadoEdificio = require("../controller/personaedificio/asignarEmpleadoEdificio");
@@ -34,6 +30,11 @@ router.get("/listar", validarSesion, soloAdminOSupervisor, async (req, res) => {
 
 // Quitar (desactivar) asignación
 router.put("/quitar/:id", validarSesion, soloAdminOSupervisor, async (req, res) => {
+    const { id } = req.params;
+    const result = await quitarAsignacion(id);
+    res.json(result);
+});
+router.delete("/eliminar/:id", validarSesion, soloAdminOSupervisor, async (req, res) => {
     const { id } = req.params;
     const result = await quitarAsignacion(id);
     res.json(result);
