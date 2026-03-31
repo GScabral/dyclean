@@ -12,7 +12,7 @@ const listPersona = async () => {
                 {
                     model: Edificio,
                     through: {
-                        attributes: ["id", "persona_id", "edificio_id", "activo", "dias_semana"] // Trae el id y campos útiles
+                        attributes: ["id", "persona_id", "edificio_id", "activo", "dia_semana"] // Trae el id y campos útiles
                     },
                     attributes: ["id", "nombre", "direccion"]
                 }
